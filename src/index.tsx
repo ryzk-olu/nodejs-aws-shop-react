@@ -8,6 +8,9 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { theme } from "~/theme";
 
+if (!localStorage.getItem('authorization_token')) {
+  localStorage.setItem('authorization_token', btoa('test:test'));
+}
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: { refetchOnWindowFocus: false, retry: false, staleTime: Infinity },
