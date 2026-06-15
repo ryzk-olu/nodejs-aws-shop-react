@@ -8,16 +8,19 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { theme } from "~/theme";
 
+if (!localStorage.getItem('authorization_token')) {
+  localStorage.setItem('authorization_token', btoa('test:test'));
+}
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: { refetchOnWindowFocus: false, retry: false, staleTime: Infinity },
+    queries: { refetchOnWindowFocus: false, retry: false, staleTime: 0 },
   },
 });
 
-if (import.meta.env.DEV) {
-  const { worker } = await import("./mocks/browser");
-  worker.start({ onUnhandledRequest: "bypass" });
-}
+//if (import.meta.env.DEV) {
+//  const { worker } = await import("./mocks/browser");
+//  worker.start({ onUnhandledRequest: "bypass" });
+//}
 
 const container = document.getElementById("app");
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
