@@ -13,14 +13,14 @@ if (!localStorage.getItem('authorization_token')) {
 }
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: { refetchOnWindowFocus: false, retry: false, staleTime: Infinity },
+    queries: { refetchOnWindowFocus: false, retry: false, staleTime: 0 },
   },
 });
 
-if (import.meta.env.DEV) {
-  const { worker } = await import("./mocks/browser");
-  worker.start({ onUnhandledRequest: "bypass" });
-}
+//if (import.meta.env.DEV) {
+//  const { worker } = await import("./mocks/browser");
+//  worker.start({ onUnhandledRequest: "bypass" });
+//}
 
 const container = document.getElementById("app");
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
